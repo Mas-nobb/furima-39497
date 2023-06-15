@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: ajax_app_rails7_development
+  database: furima-39497_development
 
 test:
   <<: *default
-  database: ajax_app_rails7_test
+  database: furima-39497_test
 
 production:
   <<: *default
-  database: ajax_app_rails7_production
-  username: ajax_app_rails7
-  password: <%= ENV['AJAX_APP_RAILS7_DATABASE_PASSWORD'] %>
+  database: furima-39497_production
+  username: furima-39497
+  password: <%= ENV['FURIMA_39497_DATABASE_PASSWORD'] %>
