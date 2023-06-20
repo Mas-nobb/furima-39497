@@ -16,7 +16,8 @@ class Item < ApplicationRecord
   validates :shipping_day_id, presence: true, exclusion: { in: [1],}
   validates :prefecture_id, presence: true, exclusion: { in: [1],}
   validates :shipping_fee_status_id, presence: true, exclusion: { in: [1],}
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
+
 
   # バリデーションのカスタムメソッドを定義して、半角数値のみが入力されていることを確認します
   validate :validate_price_format
