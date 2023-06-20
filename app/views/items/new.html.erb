@@ -1,5 +1,5 @@
 <head>
-  <script src="index.js"></script>
+<%= javascript_include_tag '/javascript/controllers/index.js' %>
 </head>
 
 <div class="items-sell-contents">
@@ -12,7 +12,7 @@
     <%= form_with model: @item, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
