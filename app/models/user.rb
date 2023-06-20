@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # association
+  has_many :items
+
   # Devise modules
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -10,7 +13,5 @@ class User < ApplicationRecord
   validates :last_name_kana,     presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } # 全角カタカナ
   validates :first_name_kana,    presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } # 全角カタカナ
   validates :birthday,           presence: true
-
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i } # 半角英数字混合
-
 end
