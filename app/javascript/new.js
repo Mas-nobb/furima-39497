@@ -8,7 +8,7 @@ function pullDown() {
     }
 
     const fee = Math.floor(price * 0.1); // 10%の手数料を計算
-    const profit = price - fee;
+    const profit = Math.floor(price - fee); // 利益（小数点以下切り捨て）
 
     document.getElementById('add-tax-price').innerHTML = fee;
     document.getElementById('profit').innerHTML = profit;
