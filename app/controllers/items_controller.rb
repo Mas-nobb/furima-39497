@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
-  # before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -26,7 +25,6 @@ class ItemsController < ApplicationController
   def edit
     redirect_to root_path unless current_user.id == @item.user_id
   end
-  
 
   def update
     if @item.update(item_params)
@@ -36,13 +34,17 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   if @item.destroy
-  #     redirect_to root_path, notice: '商品が削除されました。'
-  #   else
-  #     redirect_to root_path, alert: '商品の削除に失敗しました。'
-  #   end
-  # end
+  def destroy
+    if current_user && current_user.id == @item.user_id
+      if @item.destroy
+        redirect_to root_path, notice: '商品が削除されました。'
+      else
+        redirect_to root_path, alert: '商品の削除に失敗しました。'
+      end
+    else
+      redirect_to root_path, alert: '権限がありません。'
+    end
+  end
 
   private
 
@@ -54,8 +56,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  # def move_to_index
-  #   redirect_to root_path unless current_user.id == @item.user_id
-  # end
 end
