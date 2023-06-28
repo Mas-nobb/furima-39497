@@ -7,6 +7,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @item_sold = @item.order.present? # 売却済みかどうかを確認
   end
 
   def new
@@ -23,7 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
+    if @item.order.present? # 売却済みであれば
+      redirect_to root_path # トップページにリダイレクト
+    end
   end
 
   def update
