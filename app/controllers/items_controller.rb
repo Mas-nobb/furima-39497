@@ -27,9 +27,9 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
-    if @item.order.present? # 売却済みであれば
-      redirect_to root_path # トップページにリダイレクト
-    end
+    return unless @item.order.present? # 売却済みであれば
+
+    redirect_to root_path # トップページにリダイレクト
   end
 
   def update
