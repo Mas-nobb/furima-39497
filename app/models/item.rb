@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee_status
   has_one_attached :image
   has_one :order
-  
+
   validates :image, presence: true
   validates :name, presence: true
   validates :description, presence: true
