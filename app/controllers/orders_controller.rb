@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   before_action :redirect_if_not_eligible, only: [:index, :create]
@@ -38,6 +39,9 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+=======
+  def index
+>>>>>>> parent of 145653a (購入機能の実験)
   end
 
   def redirect_if_not_eligible

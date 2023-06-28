@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   # association
   has_many :items
-  has_many :orders
 
   # Devise modules
   devise :database_authenticatable, :registerable,
