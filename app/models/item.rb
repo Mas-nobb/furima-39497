@@ -23,6 +23,10 @@ class Item < ApplicationRecord
   # バリデーションのカスタムメソッドを定義して、半角数値のみが入力されていることを確認します
   validate :validate_price_format
 
+  def sold?
+    order.present?
+  end
+
   private
 
   def validate_price_format
