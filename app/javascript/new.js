@@ -15,10 +15,4 @@ function pullDown() {
   });
 }
 
-document.addEventListener('turbo:load', () => {
-  const itemPrice = document.getElementById('item-price');
-  if (itemPrice) {
-    pullDown();
-  }
-});
-
+document.addEventListener('turbo:load', pullDown); // or 'turbolinks:load' depending on your Rails version
