@@ -5,7 +5,7 @@ RSpec.describe OrderForm, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
-  end  
+  end
 
   describe '商品購入' do
     context '商品購入がうまくいくとき' do
@@ -84,6 +84,12 @@ RSpec.describe OrderForm, type: :model do
         @order_form.item_id = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'phone_numberが9桁以下だと購入できない' do
+        @order_form.phone_number = '090123456'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid. Please enter numbers only')
       end
     end
   end
