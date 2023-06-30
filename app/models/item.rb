@@ -7,10 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   belongs_to :shipping_fee_status
   has_one_attached :image
-<<<<<<< HEAD
   has_one :order
-=======
->>>>>>> parent of 145653a (購入機能の実験)
 
   validates :image, presence: true
   validates :name, presence: true
