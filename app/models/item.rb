@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   belongs_to :shipping_fee_status
   has_one_attached :image
+  has_one :order
 
   validates :image, presence: true
   validates :name, presence: true
@@ -21,6 +22,10 @@ class Item < ApplicationRecord
 
   # バリデーションのカスタムメソッドを定義して、半角数値のみが入力されていることを確認します
   validate :validate_price_format
+
+  def sold?
+    order.present?
+  end
 
   private
 
