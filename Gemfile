@@ -71,7 +71,6 @@ group :test do
   gem "webdrivers"
   gem 'rspec-rails', '~> 4.0.0'
   gem "factory_bot_rails"
-    gem 'database_cleaner'
 end
 
 group :production do
@@ -81,7 +80,6 @@ end
 group :development do
   gem 'rubocop', require: false
 end
-
 
 gem "devise"
 gem 'mini_magick'
