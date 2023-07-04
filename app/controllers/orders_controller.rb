@@ -4,18 +4,19 @@ class OrdersController < ApplicationController
   before_action :redirect_if_not_eligible, only: [:index, :create]
 
   def index
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @orderform = OrderForm.new
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def create
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @orderform = OrderForm.new(order_params)
     if @orderform.valid?
       pay_item
       @orderform.save
       redirect_to root_path
     else
-      render :index
+      render :index, status: :unprocessable_entity
     end
   end
 
